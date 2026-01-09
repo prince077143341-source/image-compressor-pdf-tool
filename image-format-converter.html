@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Image Format Converter | Image Compression Pro</title>
+  <meta name="description" content="Free image format converter online. Convert JPG to PNG, PNG to JPG, and WebP easily.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="margin:0;font-family:Arial;background:#f4f6f8;">
+
+<!-- NAVIGATION -->
+<nav style="background:#222;padding:12px;text-align:center;">
+  <a href="index.html" style="color:#fff;margin:0 10px;">Compress Image</a>
+  <a href="image-resizer.html" style="color:#fff;margin:0 10px;">Image Resizer</a>
+  <a href="image-format-converter.html" style="color:#4caf50;margin:0 10px;">Image Converter</a>
+  <a href="pdf-to-images.html" style="color:#fff;margin:0 10px;">PDF to Images</a>
+</nav>
+
+<!-- MAIN -->
+<div style="max-width:700px;margin:auto;padding:20px;">
+
+<h1>Image Format Converter</h1>
+<p>Convert images between JPG, PNG, and WebP formats instantly.</p>
+
+<div style="background:#fff;padding:20px;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,0.1);">
+
+<input type="file" id="inputImage" accept="image/*"><br><br>
+
+<label>Select Output Format:</label><br>
+<select id="formatSelect">
+  <option value="image/png">PNG</option>
+  <option value="image/jpeg">JPG</option>
+  <option value="image/webp">WebP</option>
+</select><br><br>
+
+<button onclick="convertImage()" style="padding:10px 15px;background:#4caf50;color:#fff;border:none;cursor:pointer;">
+Convert Image
+</button>
+
+<p id="result"></p>
+<a id="downloadLink" style="display:none;" download>⬇ Download Converted Image</a>
+
+</div>
+
+<!-- SEO CONTENT -->
+<section style="margin-top:40px;line-height:1.6;">
+<h2>Free Online Image Format Converter</h2>
+<p>
+Image Compression Pro offers a fast and free image format converter tool.
+You can easily convert JPG to PNG, PNG to JPG, and WebP images without installing any software.
+</p>
+
+<h3>How Image Format Conversion Works</h3>
+<p>
+Upload your image, select the desired output format, and click convert.
+The conversion happens instantly in your browser and your files are never uploaded to any server.
+</p>
+
+<h3>Why Use Our Image Converter?</h3>
+<ul>
+  <li>Convert images online for free</li>
+  <li>No file upload to server</li>
+  <li>Fast and secure conversion</li>
+  <li>Works on all devices</li>
+</ul>
+</section>
+
+</div>
+
+<footer style="text-align:center;padding:15px;background:#222;color:#ccc;">
+  <a href="about.html" style="color:#ccc;">About</a> |
+  <a href="privacy.html" style="color:#ccc;">Privacy Policy</a> |
+  <a href="contact.html" style="color:#ccc;">Contact</a>
+</footer>
+
+<script>
+function convertImage(){
+  const file = document.getElementById("inputImage").files[0];
+  const format = document.getElementById("formatSelect").value;
+
+  if(!file){
+    alert("Please select an image");
+    return;
+  }
+
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = e => img.src = e.target.result;
+  reader.readAsDataURL(file);
+
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img,0,0);
+
+    canvas.toBlob(blob=>{
+      const url = URL.createObjectURL(blob);
+      const link = document.getElementById("downloadLink");
+      link.href = url;
+
+      let ext = format.split("/")[1];
+      link.download = "converted-image."+ext;
+
+      link.style.display="inline-block";
+      document.getElementById("result").textContent="Image converted successfully";
+    },format,0.9);
+  }
+}
+</script>
+
+</body>
+</html>
