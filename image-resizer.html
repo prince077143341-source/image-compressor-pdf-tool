@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Image Resizer Online | Image Compression Pro</title>
+  <meta name="description" content="Free online image resizer tool. Resize images by width and height instantly without losing quality.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="font-family:Arial, sans-serif; background:#f4f6f8; margin:0;">
+
+<!-- NAVIGATION -->
+<nav style="background:#222; padding:12px; text-align:center;">
+  <a href="index.html" style="color:#fff; margin:0 10px;">Compress Image</a>
+  <a href="image-resizer.html" style="color:#4caf50; margin:0 10px;">Image Resizer</a>
+  <a href="image-format-converter.html" style="color:#fff; margin:0 10px;">Image Converter</a>
+  <a href="pdf-to-images.html" style="color:#fff; margin:0 10px;">PDF to Images</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div style="max-width:700px; margin:auto; padding:20px;">
+
+<h1>Image Resizer Tool</h1>
+<p>Resize images online easily by setting custom width and height. No upload, no registration.</p>
+
+<!-- TOOL CARD -->
+<div style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1);">
+
+  <input type="file" id="imageInput" accept="image/*"><br><br>
+
+  <label>Width (px):</label><br>
+  <input type="number" id="widthInput" placeholder="Enter width"><br><br>
+
+  <label>Height (px):</label><br>
+  <input type="number" id="heightInput" placeholder="Enter height"><br><br>
+
+  <button onclick="resizeImage()" style="padding:10px 15px; background:#4caf50; color:#fff; border:none; cursor:pointer;">
+    Resize Image
+  </button>
+
+  <p id="info"></p>
+  <a id="downloadLink" style="display:none;" download="resized-image.jpg">⬇ Download Resized Image</a>
+
+</div>
+
+<!-- SEO CONTENT -->
+<section style="margin-top:40px; line-height:1.6;">
+  <h2>Free Online Image Resizer</h2>
+  <p>
+    Image Compression Pro provides a fast and free online image resizer tool. You can resize images
+    by specifying the exact width and height in pixels. This tool is ideal for resizing images for
+    websites, social media, email, and documents.
+  </p>
+
+  <h3>How to Resize Images Online</h3>
+  <p>
+    Upload your image, enter the desired width and height, and click the resize button.
+    The resized image is created instantly in your browser without uploading files to any server.
+  </p>
+
+  <h3>Why Use Our Image Resizer?</h3>
+  <ul>
+    <li>Resize images online for free</li>
+    <li>No image upload to server</li>
+    <li>Fast and secure resizing</li>
+    <li>Works on mobile and desktop</li>
+  </ul>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer style="text-align:center; padding:15px; background:#222; color:#ccc;">
+  <a href="about.html" style="color:#ccc;">About</a> |
+  <a href="privacy.html" style="color:#ccc;">Privacy Policy</a> |
+  <a href="contact.html" style="color:#ccc;">Contact</a>
+</footer>
+
+<script>
+function resizeImage() {
+  const file = document.getElementById("imageInput").files[0];
+  const width = document.getElementById("widthInput").value;
+  const height = document.getElementById("heightInput").value;
+
+  if (!file || !width || !height) {
+    alert("Please select image and enter width & height");
+    return;
+  }
+
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = e => img.src = e.target.result;
+  reader.readAsDataURL(file);
+
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, width, height);
+
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const link = document.getElementById("downloadLink");
+      link.href = url;
+      link.style.display = "inline-block";
+      document.getElementById("info").textContent =
+        `Image resized to ${width} × ${height} pixels`;
+    }, "image/jpeg", 0.9);
+  };
+}
+</script>
+
+</body>
+</html>
