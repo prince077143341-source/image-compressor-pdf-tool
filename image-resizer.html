@@ -5,10 +5,47 @@
 <meta name="title" content="Image Resizer Online – Resize Images Free">
 
   <meta name="description" content="Free online image resizer tool. Resize images by width and height instantly without losing quality.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+:root {
+  --bg1:#141e30;
+  --bg2:#243b55;
+  --card:rgba(255,255,255,.12);
+  --text:#f8fafc;
+}
+
+body.light {
+  --bg1:#f8fafc;
+  --bg2:#e2e8f0;
+  --card:#ffffff;
+  --text:#1e293b;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:var(--text);
+  font-family:system-ui,sans-serif;
+}
+
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:16px;
+}
+
+button{
+  background:#ff512f;
+  color:#fff;
+  padding:10px 14px;
+  border:none;
+  border-radius:12px;
+}
+</style>
+
 </head>
 
-<body style="font-family:Arial, sans-serif; background:#f4f6f8; margin:0;">
+<body>
 
 <!-- NAVIGATION -->
 <nav style="background:#222; padding:12px; text-align:center;">
