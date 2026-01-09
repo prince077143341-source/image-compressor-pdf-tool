@@ -42,10 +42,47 @@ button{
   border-radius:12px;
 }
 </style>
+<style>
+/* FORCE DARK PRO THEME */
+body.dark{
+  margin:0 !important;
+  min-height:100vh !important;
+  background:linear-gradient(135deg,#141e30,#243b55) !important;
+  color:#f8fafc !important;
+  font-family:system-ui,sans-serif !important;
+}
+
+/* FORCE ALL SECTIONS DARK */
+body.dark section,
+body.dark main,
+body.dark div{
+  background:transparent !important;
+}
+
+/* CARD LOOK */
+.card{
+  background:rgba(255,255,255,.12) !important;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+/* BUTTON */
+button{
+  background:linear-gradient(135deg,#ff512f,#dd2476) !important;
+  color:#fff !important;
+  border:none;
+  border-radius:14px;
+  padding:12px 16px;
+  font-weight:600;
+  cursor:pointer;
+}
+</style>
 
 </head>
 
-<body>
+<body><body class="dark">
+
 
 <!-- NAVIGATION -->
 <nav style="background:#222; padding:12px; text-align:center;">
