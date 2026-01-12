@@ -130,6 +130,26 @@ a{color:#ffeb3b}
   border-color: #ff512f;
   background: rgba(255,255,255,0.1);
 }
+.upload-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+
+.upload-wrap label {
+  display: block;
+}
+.drop-text strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.drop-text span {
+  font-size: 14px;
+  opacity: 0.85;
+}
 
 </style>
 </head>
@@ -267,14 +287,21 @@ a{color:#ffeb3b}
 <div class="card" id="image-compressor-tool">
 
 <h2>🖼 Batch Image Compression</h2>
+<div class="upload-wrap">
+
 
 <label class="drop" id="dropBox">
-  Drag & Drop Images Here<br>or Click to Upload
+ <div class="drop-text">
+  <strong>Drag & Drop Images Here</strong>
+  <span>or click to upload</span>
+</div>
+
   <input type="file" id="images" multiple accept="image/*">
 </label>
 
 <label>Compression Level: <b><span id="qv">70%</span></b></label>
 <input type="range" id="qr" min="10" max="100" value="70">
+</div>
 
 <button onclick="compressAll()">Compress & Download ZIP</button>
 <p id="info"></p>
