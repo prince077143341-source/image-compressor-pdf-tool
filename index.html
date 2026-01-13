@@ -233,6 +233,11 @@ document.getElementById("images").addEventListener("change", function () {
 <button onclick="compressAll()">Compress & Download ZIP</button>
 <p id="info"></p>
 </div>
+<div class="card">
+  <h2>📄 Image to PDF</h2>
+  <input type="file" id="pdfImgs" multiple accept="image/*" style="display:block">
+  <button onclick="toPDF()">Convert to PDF</button>
+</div>
 
 <div class="container"><!-- TOOL CARDS -->
 <section style="grid-column:1 / -1; margin-bottom:30px;">
@@ -344,11 +349,7 @@ document.getElementById("images").addEventListener("change", function () {
 <div class="ad">AdSense Banner</div>
 
 
-<div class="card">
-<h2>📄 Image to PDF</h2>
-<input type="file" id="pdfImgs" multiple accept="image/*" style="display:block">
-<button onclick="toPDF()">Convert to PDF</button>
-</div>
+
 
 <div class="ad">AdSense Banner</div>
 
