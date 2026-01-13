@@ -323,6 +323,17 @@ a{color:#ffeb3b}
 
   <input type="file" id="images" multiple accept="image/*" hidden>
 
+  <script>
+document.getElementById("images").addEventListener("change", function () {
+  if (typeof gtag === "function") {
+    gtag('event', 'upload_click', {
+      event_category: 'interaction',
+      event_label: 'image_upload'
+    });
+  }
+});
+</script>
+
 </label>
 
 <label>Compression Level: <b><span id="qv">70%</span></b></label>
