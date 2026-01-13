@@ -203,6 +203,14 @@ a{color:#ffeb3b}
 
 <h2>🖼 Batch Image Compression</h2>
 <div class="upload-wrap">
+  <div id="preview" style="margin-top:15px; display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:10px;"></div>
+
+<div id="preview" style="
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(80px,1fr));
+  gap:10px;
+  margin-top:15px;
+"></div>
 
 
 <label class="drop" id="dropBox">
@@ -375,8 +383,40 @@ dropBox.onclick=()=>images.click();
 dropBox.ondragover=e=>{e.preventDefault();dropBox.style.opacity=.7}
 dropBox.ondragleave=()=>dropBox.style.opacity=1;
 dropBox.ondrop=e=>{
- e.preventDefault();images.files=e.dataTransfer.files;dropBox.style.opacity=1;
+ e.preventDefault();images.files=e.dataTransfer.files;dropBox.style.opacity=1;showPreview(images.files);
+
 }
+   const preview = document.getElementById("preview");
+const imagesInput = document.getElementById("images");
+function showPreview(files){
+  preview.innerHTML = "";
+  [...files].forEach(file=>{
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    img.style.width = "80px";
+    img.style.height = "80px";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "8px";
+    preview.appendChild(img);
+  });
+}
+
+ 
+
+imagesInput.addEventListener("change", () => {
+  preview.innerHTML = "";
+  const files = imagesInput.files;
+
+  for (let i = 0; i < files.length; i++) {
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(files[i]);
+    img.style.width = "100%";
+    img.style.borderRadius = "8px";
+    img.style.objectFit = "cover";
+    img.onload = () => URL.revokeObjectURL(img.src);
+    preview.appendChild(img);
+  }
+});
 
 // Compression
 async function compressAll(){
