@@ -204,9 +204,53 @@ a{color:#ffeb3b}
 </nav>
 <div class="card" id="image-compressor-tool">
 
+<section style="max-width:1200px;margin:40px auto;padding:20px;line-height:1.7;">
+
+<h1>Free Online Image Compression Tool</h1>
+
+<p>
+Image Compression Pro is a free online tool that helps you reduce image file size without losing visual quality.
+All image processing happens directly in your browser, so your files are never uploaded to any server.
+</p>
+
+<p>
+This tool is ideal for students, bloggers, developers, and website owners who want faster websites,
+smaller image sizes, and better performance without compromising privacy.
+</p>
+
+<h2>What Is Image Compression?</h2>
+<p>
+Image compression is the process of reducing the file size of an image while keeping the image visually acceptable.
+Compressed images load faster and use less storage space.
+</p>
+
+<h2>Why Image Compression Matters</h2>
+<p>
+Large image files slow down websites and increase data usage.
+Compressing images improves page speed, SEO performance, and overall user experience.
+</p>
+
+<h2>Who Should Use This Tool?</h2>
+<ul>
+  <li>Students submitting assignments online</li>
+  <li>Bloggers uploading images to websites</li>
+  <li>Developers optimizing website performance</li>
+  <li>Anyone who wants smaller image files</li>
+</ul>
+
+<h2>How Our Image Compression Tool Works</h2>
+<p>
+Upload your images, choose the compression level, and download optimized images instantly.
+Your images remain private because everything runs in your browser.
+</p>
+
+<h2>Try the Image Compression Tool Below</h2>
+
+</section>
+<div class="card" id="image-compressor-tool">
+
 <h2>🖼 Batch Image Compression</h2>
 <div class="upload-wrap">
- 
 
 <div id="preview" style="
   display:grid;
@@ -215,35 +259,25 @@ a{color:#ffeb3b}
   margin-top:15px;
 "></div>
 
-
 <label class="drop" id="dropBox">
  <div class="drop-text">
   <strong>Drag & Drop Images Here</strong>
   <span>or click to upload</span>
-</div>
+ </div>
 
-  <input type="file" id="images" multiple accept="image/*" hidden>
-
-  <script>
-document.getElementById("images").addEventListener("change", function () {
-  if (typeof gtag === "function") {
-    gtag('event', 'upload_click', {
-      event_category: 'interaction',
-      event_label: 'image_upload'
-    });
-  }
-});
-</script>
-
+ <input type="file" id="images" multiple accept="image/*" hidden>
 </label>
 
 <label>Compression Level: <b><span id="qv">70%</span></b></label>
 <input type="range" id="qr" min="10" max="100" value="70">
+
 </div>
 
 <button onclick="compressAll()">Compress & Download ZIP</button>
 <p id="info"></p>
+
 </div>
+
   <div class="card" style="margin-top:20px;">
   <h3>🔒 Trusted & Secure</h3>
   <ul style="line-height:1.8; font-size:15px;">
