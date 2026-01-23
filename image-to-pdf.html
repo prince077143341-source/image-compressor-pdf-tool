@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image to PDF Converter – Free Online Tool</title>
+  <meta name="description" content="Convert images to PDF online for free. Fast, secure, browser-based image to PDF converter.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body{
+      margin:0;
+      font-family:system-ui,sans-serif;
+      background:linear-gradient(135deg,#141e30,#243b55);
+      color:#fff;
+      min-height:100vh;
+    }
+    nav{
+      text-align:center;
+      padding:12px;
+      background:rgba(0,0,0,.3);
+    }
+    nav a{
+      color:#ffeb3b;
+      margin:0 10px;
+      font-weight:600;
+      text-decoration:none;
+    }
+    .container{
+      max-width:900px;
+      margin:40px auto;
+      padding:20px;
+    }
+    .card{
+      background:rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 20px 40px rgba(0,0,0,.3);
+    }
+    button{
+      width:100%;
+      margin-top:15px;
+      padding:14px;
+      border:none;
+      border-radius:14px;
+      font-size:16px;
+      background:linear-gradient(135deg,#ff512f,#dd2476);
+      color:#fff;
+      font-weight:600;
+      cursor:pointer;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Image Compression</a> |
+  <a href="image-to-pdf.html">Image to PDF</a>
+</nav>
+
+<div class="container">
+  <div class="card">
+    <h1>📄 Image to PDF Converter</h1>
+    <p>Select multiple images and convert them into a single PDF file.</p>
+
+    <input type="file" id="pdfImgs" multiple accept="image/*">
+
+    <button onclick="toPDF()">Convert to PDF</button>
+  </div>
+</div>
+
+<script>
+async function toPDF(){
+  const files = document.getElementById("pdfImgs").files;
+  if(!files.length){
+    alert("Select images first");
+    return;
+  }
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+
+  for(let i=0;i<files.length;i++){
+    const data = await fileToDataURL(files[i]);
+    if(i>0) pdf.addPage();
+    pdf.addImage(data,"JPEG",10,10,190,260);
+  }
+  pdf.save("images.pdf");
+}
+
+function fileToDataURL(file){
+  return new Promise(resolve=>{
+    const reader=new FileReader();
+    reader.onload=e=>resolve(e.target.result);
+    reader.readAsDataURL(file);
+  });
+}
+</script>
+
+</body>
+</html>
