@@ -63,10 +63,15 @@ header h1{font-size:clamp(26px,5vw,42px)}
 @media(max-width:900px){.container{grid-template-columns:1fr}}
 
 .card{
-  background:var(--card);backdrop-filter:blur(14px);
-  border-radius:18px;padding:22px;
-  box-shadow:0 20px 40px #0003;margin-bottom:20px
- text-align: center;
+  background:var(--card);
+  backdrop-filter:blur(14px);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 20px 40px #0003;
+  margin-bottom:20px;
+  text-align:center;
+}
+
 
 
 h2{margin:0 0 15px}
@@ -435,26 +440,25 @@ const qr=document.getElementById("qr"),qv=document.getElementById("qv");
 qr.oninput=()=>qv.textContent=qr.value+"%";
 
 function toggleTheme(){
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 
-  if(document.body.classList.contains("dark")){
-    localStorage.setItem("theme","dark");
-  } else {
+  if(document.body.classList.contains("light")){
     localStorage.setItem("theme","light");
+  } else {
+    localStorage.setItem("theme","dark");
   }
 }
-// DEFAULT THEME (WHITE FIRST)
-(function(){
-  const savedTheme = localStorage.getItem("theme");
 
-  if(savedTheme === "dark"){
-    document.body.classList.add("dark");
-    document.body.classList.remove("light");
-  } else {
-    document.body.classList.remove("dark");
+// DEFAULT: WHITE FIRST
+(function(){
+  const theme = localStorage.getItem("theme");
+  if(theme === "light"){
     document.body.classList.add("light");
+  } else {
+    document.body.classList.remove("light");
   }
 })();
+
 
 (function(){
   const savedTheme = localStorage.getItem("theme");
