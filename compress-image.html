@@ -124,11 +124,44 @@ button:hover{
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
 <script>
-function compressAll(){
-  alert("Your compression JS already exists and will work here.");
-}
-</script>
+async function compressAll() {
+  const files = document.getElementById("images").files;
+  const quality = document.getElementById("qr").value / 100;
+  const info = document.getElementById("info");
+
+  if (!files.length) {
+    info.innerText = "Please select at least one image.";
+    return;
+  }
+
+  info.innerText = "Compressing images...";
+  const zip = new JSZip();
+
+  for (let file of files) {
+    const img = new Image();
+    const reader = new FileReader();
+
+    await new Promise(resolve => {
+      reader.onload = e => {
+        img.src = e.target.result;
+        img.onload = () => resolve();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    const blob = await new Promise(res =>
+      canvas.toBlob
+
 
 </body>
 </html>
