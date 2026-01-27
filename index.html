@@ -26,28 +26,15 @@
   box-shadow: 0 25px 50px rgba(0,0,0,.35);
 }
 
-:root {
-  --bg1:#141e30;
-  --bg2:#243b55;
-  --card:rgba(255,255,255,.12);
-  --text:#f8fafc;
-
-
-}
-body.light {
-  --bg1:#f8fafc;
-  --bg2:#e2e8f0;
-  --card:#ffffff;
-  --text:#1e293b;
-}
 
 
 
 *{box-sizing:border-box;font-family:system-ui,sans-serif}
 body{
   margin:0;min-height:100vh;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
-  color:var(--text);transition:.3s;
+ background:#f8fafc;
+color:#1e293b;
+
 }
 header{text-align:center;padding:30px 15px}
 header h1{font-size:clamp(26px,5vw,42px)}
@@ -203,7 +190,7 @@ body.light a{
 <body class="light">
 
 
-<div class="toggle" onclick="toggleTheme()">🌙 / ☀</div>
+
 
 <header>
   <h1>Image Compressor & PDF Converter</h1>
@@ -444,39 +431,7 @@ Your images remain private because everything runs in your browser.
 </footer>
 
 
-<script>
-const qr=document.getElementById("qr"),qv=document.getElementById("qv");
-qr.oninput=()=>qv.textContent=qr.value+"%";
 
-function toggleTheme(){
-  document.body.classList.toggle("light");
-
-  if(document.body.classList.contains("light")){
-    localStorage.setItem("theme","light");
-  } else {
-    localStorage.setItem("theme","dark");
-  }
-}
-
-// DEFAULT: WHITE FIRST
-(function(){
-  const theme = localStorage.getItem("theme");
-  if(theme === "light"){
-    document.body.classList.add("light");
-  } else {
-    document.body.classList.remove("light");
-  }
-})();
-
-
-(function(){
-  const savedTheme = localStorage.getItem("theme");
-  if(savedTheme === "dark"){
-    document.body.classList.add("dark");
-  } else {
-    document.body.classList.remove("dark");
-  }
-})();
 
 // Drag Drop
 dropBox.onclick=()=>images.click();
